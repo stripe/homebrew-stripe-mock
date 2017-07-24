@@ -1,9 +1,9 @@
 class Stripelocal < Formula
   desc "stripelocal is a server that can be run locally and which responds like the real Stripe API."
   homepage "https://github.com.com/brandur/stripelocal"
-  url "https://github.com/brandur/stripelocal/releases/download/v0.1.8/stripelocal_0.1.8_darwin_amd64.tar.gz"
-  version "0.1.8"
-  sha256 "838bc1a420bf929b17ecd7d19bc60336d02ad63302618077d56525c2863d34b3"
+  url "https://github.com/brandur/stripelocal/releases/download/v0.1.9/stripelocal_0.1.9_darwin_amd64.tar.gz"
+  version "0.1.9"
+  sha256 "60df1a6f082ca71f55c9dcd70650e56f26266c07513fabeec5c347ee1298abae"
 
   def install
     bin.install "stripelocal"
