@@ -1,12 +1,12 @@
-class Stripelocal < Formula
-  desc "stripelocal is a server that can be run locally and which responds like the real Stripe API."
-  homepage "https://github.com.com/brandur/stripelocal"
-  url "https://github.com/brandur/stripelocal/releases/download/v0.1.10/stripelocal_0.1.10_darwin_amd64.tar.gz"
+class StripeMock < Formula
+  desc "stripe-mock is a mock HTTP server that responds like the real Stripe API. It can be used instead of Stripe's testmode to make test suites integrating with Stripe faster and less brittle."
+  homepage "https://github.com.com/brandur/stripe-mock"
+  url "https://github.com/brandur/stripe-mock/releases/download/v0.1.10/stripe-mock_0.1.10_darwin_amd64.tar.gz"
   version "0.1.10"
   sha256 "7d7b9df4b2801187e1eb477d0330c1fd85ef010b8664322d069a52db5ac5427d"
 
   def install
-    bin.install "stripelocal"
+    bin.install "stripe-mock"
   end
 
   def plist; <<-EOS.undent
@@ -23,7 +23,7 @@ class Stripelocal < Formula
     <string>#{plist_name}</string>
     <key>ProgramArguments</key>
     <array>
-      <string>#{opt_bin}/stripelocal</string>
+      <string>#{opt_bin}/stripe-mock</string>
       <string>-port</string>
       <string>12111</string>
     </array>
@@ -32,9 +32,9 @@ class Stripelocal < Formula
     <key>WorkingDirectory</key>
     <string>#{var}</string>
     <key>StandardErrorPath</key>
-    <string>#{var}/log/stripelocal.log</string>
+    <string>#{var}/log/stripe-mock.log</string>
     <key>StandardOutPath</key>
-    <string>#{var}/log/stripelocal.log</string>
+    <string>#{var}/log/stripe-mock.log</string>
   </dict>
 </plist>
 
