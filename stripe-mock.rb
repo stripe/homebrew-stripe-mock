@@ -1,9 +1,9 @@
 class StripeMock < Formula
   desc "stripe-mock is a mock HTTP server that responds like the real Stripe API. It can be used instead of Stripe's testmode to make test suites integrating with Stripe faster and less brittle."
   homepage "https://github.com.com/stripe/stripe-mock"
-  url "https://github.com/stripe/stripe-mock/releases/download/v0.9.0/stripe-mock_0.9.0_darwin_amd64.tar.gz"
-  version "0.9.0"
-  sha256 "8175cbba0407d8d5578e6a3aea7a467f8e25783c4039eed9788a52dbe26ac118"
+  url "https://github.com/stripe/stripe-mock/releases/download/v0.10.0/stripe-mock_0.10.0_darwin_amd64.tar.gz"
+  version "0.10.0"
+  sha256 "37747b91b0ff8945ba9acd4e7321d37d46f3210712af756261278e0c19360445"
 
   def install
     bin.install "stripe-mock"
@@ -11,7 +11,7 @@ class StripeMock < Formula
 
   plist_options :startup => false
 
-  def plist; <<~EOS
+  def plist; <<-EOS.undent
     <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
