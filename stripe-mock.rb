@@ -26,8 +26,10 @@ class StripeMock < Formula
     <key>ProgramArguments</key>
     <array>
       <string>#{opt_bin}/stripe-mock</string>
-      <string>-port</string>
+      <string>-http-port</string>
       <string>12111</string>
+      <string>-https-port</string>
+      <string>12112</string>
     </array>
     <key>RunAtLoad</key>
     <true/>
