@@ -1,9 +1,9 @@
 class StripeMock < Formula
   desc "stripe-mock is a mock HTTP server that responds like the real Stripe API. It can be used instead of Stripe's testmode to make test suites integrating with Stripe faster and less brittle."
   homepage "https://github.com/stripe/stripe-mock"
-  url "https://github.com/stripe/stripe-mock/releases/download/v0.41.0/stripe-mock_0.41.0_darwin_amd64.tar.gz"
-  version "0.41.0"
-  sha256 "3caeca86da7409d730f80a7d94d08621aec6ca88cceca558fe4d97cfc4c4ba7f"
+  url "https://github.com/stripe/stripe-mock/releases/download/v0.42.0/stripe-mock_0.42.0_darwin_amd64.tar.gz"
+  version "0.42.0"
+  sha256 "d5c6e0ad45416d2500bdd9958c52177bff6258a6e3ea18a0f7906a9caa5ef888"
 
   def install
     bin.install "stripe-mock"
@@ -42,10 +42,6 @@ class StripeMock < Formula
   </dict>
 </plist>
 
-    EOS
-  end
-
-  test do
-    
+  EOS
   end
 end
