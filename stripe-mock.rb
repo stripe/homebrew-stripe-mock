@@ -2,16 +2,16 @@
 class StripeMock < Formula
   desc "stripe-mock is a mock HTTP server that responds like the real Stripe API. It can be used instead of Stripe's testmode to make test suites integrating with Stripe faster and less brittle."
   homepage "https://github.com/stripe/stripe-mock"
-  version "0.98.0"
+  version "0.99.0"
   bottle :unneeded
 
   if OS.mac?
-    url "https://github.com/stripe/stripe-mock/releases/download/v0.98.0/stripe-mock_0.98.0_darwin_amd64.tar.gz"
-    sha256 "adb24d7b9c1d6d187a0d8e32208cc6d5835bae02ab7563f893b6e328bf14143c"
+    url "https://github.com/stripe/stripe-mock/releases/download/v0.99.0/stripe-mock_0.99.0_darwin_amd64.tar.gz"
+    sha256 "cd97a4444514b5715a03478b90f8698f9e48b25b4bab1dd6cba61768279bbe38"
   elsif OS.linux?
     if Hardware::CPU.intel?
-      url "https://github.com/stripe/stripe-mock/releases/download/v0.98.0/stripe-mock_0.98.0_linux_amd64.tar.gz"
-      sha256 "ab8e72801287355fe30bf9b82774c4fa40652be736ebc7b0d616e4237cf70577"
+      url "https://github.com/stripe/stripe-mock/releases/download/v0.99.0/stripe-mock_0.99.0_linux_amd64.tar.gz"
+      sha256 "4981843f216124244b287cc3eb261047235748ff0b2e96c62f99a9c9ca3a021a"
     end
   end
 
