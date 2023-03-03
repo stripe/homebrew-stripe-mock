@@ -45,8 +45,6 @@ class StripeMock < Formula
     end
   end
 
-  plist_options :startup => false
-
   service do
     keep_alive successful_exit: false
 
