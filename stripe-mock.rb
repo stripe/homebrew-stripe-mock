@@ -47,37 +47,21 @@ class StripeMock < Formula
 
   plist_options :startup => false
 
-  def plist; <<~EOS
-    <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-  <dict>
-    <key>KeepAlive</key>
-    <dict>
-      <key>SuccessfulExit</key>
-      <false/>
-    </dict>
-    <key>Label</key>
-    <string>#{plist_name}</string>
-    <key>ProgramArguments</key>
-    <array>
-      <string>#{opt_bin}/stripe-mock</string>
-      <string>-http-port</string>
-      <string>12111</string>
-      <string>-https-port</string>
-      <string>12112</string>
-    </array>
-    <key>RunAtLoad</key>
-    <true/>
-    <key>WorkingDirectory</key>
-    <string>#{var}</string>
-    <key>StandardErrorPath</key>
-    <string>#{var}/log/stripe-mock.log</string>
-    <key>StandardOutPath</key>
-    <string>#{var}/log/stripe-mock.log</string>
-  </dict>
-</plist>
+  service do
+    keep_alive successful_exit: false
 
-  EOS
+    run [
+      opt_bin/"stripe-mock",
+      "-http-port", 
+      "12111",
+      "-https-port",
+      "12112"
+    ]
+    run_type :immediate
+    working_dir var
+    environment_variables PATH: HOMEBREW_PREFIX/"bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    process_type :interactive
+    log_path var/"log/stripe-mock.log"
+    error_log_path var/"log/stripe-mock.log"
   end
 end
