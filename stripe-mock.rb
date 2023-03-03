@@ -57,7 +57,7 @@ class StripeMock < Formula
       "-https-port",
       "12112"
     ]
-    run_type :immediate
+    run_at_load true
     working_dir var
     environment_variables PATH: HOMEBREW_PREFIX/"bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
     process_type :interactive
