@@ -58,8 +58,6 @@ class StripeMock < Formula
       "12112"
     ]
     working_dir var
-    environment_variables PATH: HOMEBREW_PREFIX/"bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-    process_type :interactive
     log_path var/"log/stripe-mock.log"
     error_log_path var/"log/stripe-mock.log"
   end
