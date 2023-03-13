@@ -5,20 +5,20 @@
 class StripeMock < Formula
   desc "stripe-mock is a mock HTTP server that responds like the real Stripe API. It can be used instead of Stripe's testmode to make test suites integrating with Stripe faster and less brittle."
   homepage "https://github.com/stripe/stripe-mock"
-  version "0.152.0"
+  version "0.155.0"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/stripe/stripe-mock/releases/download/v0.152.0/stripe-mock_0.152.0_darwin_arm64.tar.gz"
-      sha256 "82d8065cffc450b71b6b6f83fbe6413f37b0c7b368e14beb24604cadca4b2a4b"
+      url "https://github.com/stripe/stripe-mock/releases/download/v0.155.0/stripe-mock_0.155.0_darwin_arm64.tar.gz"
+      sha256 "b78c7c2e8c0fd7e7769492704c8e11cce61af8239da2c98b59e2607d20b6b629"
 
       def install
         bin.install "stripe-mock"
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/stripe/stripe-mock/releases/download/v0.152.0/stripe-mock_0.152.0_darwin_amd64.tar.gz"
-      sha256 "851c5f501278f287b59811b79944e116cea467a8ab8e41fc8f38d5f280a6bb77"
+      url "https://github.com/stripe/stripe-mock/releases/download/v0.155.0/stripe-mock_0.155.0_darwin_amd64.tar.gz"
+      sha256 "aa3a3bff58fec521b8991e1b0a618b6db28ff4b2006902e745828d00e52fc2e1"
 
       def install
         bin.install "stripe-mock"
@@ -27,17 +27,17 @@ class StripeMock < Formula
   end
 
   on_linux do
-    if Hardware::CPU.intel?
-      url "https://github.com/stripe/stripe-mock/releases/download/v0.152.0/stripe-mock_0.152.0_linux_amd64.tar.gz"
-      sha256 "486a5f3e2c0d9f4c0a967d21c62d6aa77071691b8c45d36fb1479470fd6023df"
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/stripe/stripe-mock/releases/download/v0.155.0/stripe-mock_0.155.0_linux_arm64.tar.gz"
+      sha256 "d9ef9e93bc3f5582869de4e907e1c9903c5ae19da0631668b247b8e36dc978a1"
 
       def install
         bin.install "stripe-mock"
       end
     end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/stripe/stripe-mock/releases/download/v0.152.0/stripe-mock_0.152.0_linux_arm64.tar.gz"
-      sha256 "68ed381911c36f8e433d149d8959e0b57ebf35daea2df96347e0c4a8e97fd216"
+    if Hardware::CPU.intel?
+      url "https://github.com/stripe/stripe-mock/releases/download/v0.155.0/stripe-mock_0.155.0_linux_amd64.tar.gz"
+      sha256 "4d742db98bbfe78e1e399417c87c4e7c28b43e3149535e12be54645bf54053b7"
 
       def install
         bin.install "stripe-mock"
@@ -45,18 +45,39 @@ class StripeMock < Formula
     end
   end
 
-  service do
-    keep_alive successful_exit: false
+  plist_options :startup => false
 
-    run [
-      opt_bin/"stripe-mock",
-      "-http-port", 
-      "12111",
-      "-https-port",
-      "12112"
-    ]
-    working_dir var
-    log_path var/"log/stripe-mock.log"
-    error_log_path var/"log/stripe-mock.log"
+  def plist; <<~EOS
+    <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>KeepAlive</key>
+    <dict>
+      <key>SuccessfulExit</key>
+      <false/>
+    </dict>
+    <key>Label</key>
+    <string>#{plist_name}</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>#{opt_bin}/stripe-mock</string>
+      <string>-http-port</string>
+      <string>12111</string>
+      <string>-https-port</string>
+      <string>12112</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>WorkingDirectory</key>
+    <string>#{var}</string>
+    <key>StandardErrorPath</key>
+    <string>#{var}/log/stripe-mock.log</string>
+    <key>StandardOutPath</key>
+    <string>#{var}/log/stripe-mock.log</string>
+  </dict>
+</plist>
+
+  EOS
   end
 end
