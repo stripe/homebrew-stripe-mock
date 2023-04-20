@@ -5,20 +5,20 @@
 class StripeMock < Formula
   desc "stripe-mock is a mock HTTP server that responds like the real Stripe API. It can be used instead of Stripe's testmode to make test suites integrating with Stripe faster and less brittle."
   homepage "https://github.com/stripe/stripe-mock"
-  version "0.160.0"
+  version "0.161.0"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/stripe/stripe-mock/releases/download/v0.160.0/stripe-mock_0.160.0_darwin_arm64.tar.gz"
-      sha256 "8755b1d7508ee3510775eaf06d55f472933ea1bce65f2a7a94976d93ef4f98b7"
+      url "https://github.com/stripe/stripe-mock/releases/download/v0.161.0/stripe-mock_0.161.0_darwin_arm64.tar.gz"
+      sha256 "789e97de20cb5e4cf9ab7389053ce95ac0ef9854df1230e352f0f8ae5847fcc7"
 
       def install
         bin.install "stripe-mock"
       end
     end
     if Hardware::CPU.intel?
-      url "https://github.com/stripe/stripe-mock/releases/download/v0.160.0/stripe-mock_0.160.0_darwin_amd64.tar.gz"
-      sha256 "08ccb4280f4e4ff9449c5db3fa7e03ff4c400d1ce33e21a5fdacd04bc86ad124"
+      url "https://github.com/stripe/stripe-mock/releases/download/v0.161.0/stripe-mock_0.161.0_darwin_amd64.tar.gz"
+      sha256 "f8635bba9e70b79788ca2787069f7599d95ad8afe7e74f62db27cf2ed50b6e0f"
 
       def install
         bin.install "stripe-mock"
@@ -27,17 +27,17 @@ class StripeMock < Formula
   end
 
   on_linux do
-    if Hardware::CPU.intel?
-      url "https://github.com/stripe/stripe-mock/releases/download/v0.160.0/stripe-mock_0.160.0_linux_amd64.tar.gz"
-      sha256 "5ac5a2763f564852e075cf24a0e2e5933b750b040919cbc4645bb9abed6c4b94"
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/stripe/stripe-mock/releases/download/v0.161.0/stripe-mock_0.161.0_linux_arm64.tar.gz"
+      sha256 "aa7f9d2b1bbaa66aee8c953ca18abe46f654ba4c5e5a2fa40602030c6fe9b26c"
 
       def install
         bin.install "stripe-mock"
       end
     end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/stripe/stripe-mock/releases/download/v0.160.0/stripe-mock_0.160.0_linux_arm64.tar.gz"
-      sha256 "0074bc778244bd1bcf61cc38130f6a7d06decf429d25603e1723cd505a3069eb"
+    if Hardware::CPU.intel?
+      url "https://github.com/stripe/stripe-mock/releases/download/v0.161.0/stripe-mock_0.161.0_linux_amd64.tar.gz"
+      sha256 "f72c4419d20ca816926db86ec0cc72ff58972e01a3c93c9e104f33e13c74925e"
 
       def install
         bin.install "stripe-mock"
